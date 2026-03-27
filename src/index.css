@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  /* 1. Define your primary color using your RGB values */
+  --color-primary: rgb(219 39 119);
+  
+  /* 2. Define other universal brand colors */
+  --color-ny-dark: blue;
+  --color-ny-bg: #f9fafb;
+  
+  /* 3. You can even define universal spacing */
+  --spacing-header: 64px;
+}
+
+/* You can still keep your manual variable here if you need it for pure CSS logic */
+:root {
+  --color-primary-raw: 219 39 119; 
+}
