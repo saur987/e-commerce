@@ -19,11 +19,11 @@ const HeroBanner = () => {
         </div>
 
       {/* Trust Bar / Promo Bar (Common in Nykaa-style headers) */ }
-    <div className="flex justify-center space-x-8 py-3 bg-gray-50 border-b border-gray-100">
-        <p className="text-[10px] md:text-xs font-semibold text-gray-500 uppercase tracking-widest">
+    <div className="flex justify-center md:space-x-8 p-4 py-3 bg-gray-50 border-b border-gray-100">
+        <p className="text-[10px] text-center md:text-xs font-semibold text-gray-500 uppercase tracking-widest">
             ✨ 100% Authentic Products
         </p>
-        <p className="text-[10px] md:text-xs font-semibold text-gray-500 uppercase tracking-widest">
+        <p className="text-[10px] text-center md:text-xs font-semibold text-gray-500 uppercase tracking-widest">
             🚚 Free Shipping on orders over ₹1000
         </p>
     </div>

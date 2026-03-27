@@ -81,8 +81,8 @@ const Home = () => {
       <ProductSlider />
       <BrandSpotlight />
 
-      <div className='py-8 px-4 md:px-8'>
-        <div className='px-8' >
+      <div className='py-8 lg:px-4 md:px-8'>
+        <div className='px-8 mb-6' >
           <h2 className='font-medium'>IN THE SPOTLIGHT</h2>
           <p className="font-medium text-2xl">Trending Summer Picks      </p>
         </div>
