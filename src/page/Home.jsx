@@ -78,8 +78,6 @@ const Home = () => {
         </div>
       </div> */}
       <ProductSlider />
-
-
       <ProductSlider />
       <BrandSpotlight />
 
