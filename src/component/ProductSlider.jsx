@@ -20,7 +20,7 @@ const ProductSlider = () => {
             <div className="mb-6 flex justify-between items-end">
                 <div>
                     <h2 className="font-medium text-gray-500 uppercase tracking-wider text-sm">In the Spotlight</h2>
-                    <p className="font-medium text-2xl">Products on Slider</p>
+                    <p className="font-medium text-2xl">Products on Offer</p>
                 </div>
 
                 {/* Navigation Buttons */}

@@ -1,10 +1,14 @@
 import { useState } from "react";
-import SearchIcon from '@mui/icons-material/Search';
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import {
+    Search as SearchIcon,
+    PhotoCamera as PhotoCameraIcon,
+    PersonOutline as PersonOutlineIcon,
+    FavoriteBorder as FavoriteBorderIcon,
+    LocalMallOutlined as LocalMallOutlinedIcon,
+    KeyboardArrowDown as KeyboardArrowDownIcon,
+    Menu as MenuIcon,
+    Close as CloseIcon
+} from '@mui/icons-material';
 import CartDrawer from "./CartDrawer";
 
 const subCategories = [
@@ -15,101 +19,122 @@ const subCategories = [
 
 const Header = () => {
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeCategory, setActiveCategory] = useState('Women');
 
     return (
-        <header className="fixed top-0 z-[100] w-full bg-white shadow-sm">
-            {/* 1. WRAPPER FOR HOVER AREA */}
-            <div className=" relative bg-white">
+        <header className="fixed top-0 z-[100] w-full bg-white shadow-sm font-sans">
+            <div className="relative bg-white">
+                <div className="mx-auto px-4 md:px-8 py-3">
+                    <div className="flex items-center justify-between gap-4">
 
-                <div className="mx-auto px-8 py-2">
-                    <div className="flex items-center justify-between">
-                        {/* Logo & Main Nav */}
-
-
-                        {/* 1. This container now has the 'group' class to control the hover state for everything inside */}
-                        <div className="flex items-center space-x-16 group relative">
-
-                            <div className="text-2xl font-semibold">
-                                NY Fashion
+                        {/* LEFT: Mobile Menu & Logo */}
+                        <div className="flex items-center gap-2 lg:gap-8 group relative">
+                            <button
+                                className="lg:hidden p-1"
+                                onClick={() => setIsMenuOpen(true)}
+                            >
+                                <MenuIcon />
+                            </button>
+                            <div className="text-xl md:text-2xl font-bold whitespace-nowrap tracking-tight">
+                                NY <span className="text-pink-600">FASHION</span>
                             </div>
 
-                            {/* Main Categories */}
-                            <nav className="mt-4 text-lg flex justify-between space-x-4">
-                                {['Women', 'Men', 'Kids', 'Beauty', 'All Brand', 'More'].map((category) => (
+                            {/* Desktop Navigation */}
+                            <nav className="hidden lg:flex  items-center space-x-6">
+                                {['Women', 'Men', 'Kids', 'Beauty'].map((category) => (
                                     <div
                                         key={category}
                                         onClick={() => setActiveCategory(category)}
-                                        className={`cursor-pointer pb-2 border-b-2 transition-all font-semibold ${activeCategory === category
-                                            ? 'border-pink-600 text-pink-600'
-                                            : 'border-transparent hover:border-pink-600 hover:text-pink-600'
+                                        className={`cursor-pointer pb-1 border-b-2 transition-all font-semibold text-sm uppercase tracking-wide ${activeCategory === category
+                                                ? 'border-pink-600 text-pink-600'
+                                                : 'border-transparent hover:border-pink-600 hover:text-pink-600'
                                             }`}
                                     >
                                         {category}
                                     </div>
                                 ))}
                             </nav>
-
-                            {/* 2. SUB-MENU - Now correctly triggered by the parent 'group' */}
+                            {/* DESKTOP HOVER SUB-MENU */}
                             <div className="hidden group-hover:block w-[100vw] absolute left-[-40px] bg-white border-b border-gray-200 shadow-md z-40 top-full">
-                                <div className="max-w-screen-xl mx-auto">
-                                    <div className="flex items-center overflow-x-auto no-scrollbar px-4 space-x-6">
+                                <div className="max-w-screen-xl mx-auto px-8">
+                                    <div className="flex items-center space-x-8 overflow-x-auto no-scrollbar">
                                         {subCategories.map((item, index) => (
-                                            <button
-                                                key={index}
-                                                className="flex items-center space-x-1 whitespace-nowrap py-4 px-2 group/sub cursor-pointer hover:bg-gray-50"
-                                            >
-                                                <span className="text-md font-medium text-gray-800 group-hover/sub:text-pink-600 transition-colors">
+                                            <div key={index} className="flex items-center space-x-1 py-3 whitespace-nowrap cursor-pointer hover:text-pink-600 group">
+                                                <span className="text-xs font-semibold text-gray-700 group-hover:text-pink-600 uppercase tracking-tighter">
                                                     {item}
                                                 </span>
-                                                <KeyboardArrowDownIcon
-                                                    className="text-gray-400 group-hover/sub:text-pink-600 transition-transform group-hover/sub:rotate-180"
-                                                    sx={{ fontSize: 16 }}
-                                                />
-                                            </button>
+                                                <KeyboardArrowDownIcon sx={{ fontSize: 14 }} className="text-gray-400 group-hover:text-pink-600" />
+                                            </div>
                                         ))}
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Search and Icons */}
-                        <div className="flex items-center space-x-6">
-                            <div className="flex-1 max-w-lg mx-4 relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <SearchIcon className="text-gray-400" fontSize="small" />
-                                </div>
-                                <input
-                                    type="text"
-                                    placeholder="Search for products..."
-                                    className="w-full pl-10 pr-10 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-pink-500 bg-gray-50 focus:bg-white transition-all"
-                                />
-                                <button type="button" className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-pink-500">
-                                    <PhotoCameraIcon fontSize="small" />
-                                </button>
+                        {/* CENTER: Search Bar (Hidden on very small screens, or full width on md) */}
+                        <div className="hidden sm:flex flex-1 max-w-md relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <SearchIcon className="text-gray-400" sx={{ fontSize: 20 }} />
                             </div>
+                            <input
+                                type="text"
+                                placeholder="Search products..."
+                                className="w-full pl-10 pr-10 py-2 bg-gray-100 border-none rounded-full text-sm focus:ring-1 focus:ring-pink-500 focus:bg-white transition-all"
+                            />
+                            <button className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400">
+                                <PhotoCameraIcon sx={{ fontSize: 18 }} />
+                            </button>
+                        </div>
 
-                            {/* Profile, Wishlist, Bag */}
-                            <div className="flex items-center gap-1 cursor-pointer color-ny-dark transition-colors">
-                                <PersonOutlineIcon sx={{ fontSize: 24 }} />
-                                <span className="text-xs font-bold hidden lg:block uppercase mt-1">Profile</span>
+                        {/* RIGHT: Icons */}
+                        <div className="flex items-center space-x-3 md:space-x-6">
+                            <div className="flex flex-col items-center cursor-pointer hover:text-pink-600 transition-colors">
+                                <PersonOutlineIcon />
+                                <span className="text-[10px] font-bold hidden md:block uppercase">Profile</span>
                             </div>
-                            <div className="flex items-center gap-1 cursor-pointer hover:text-pink-500 transition-colors">
-                                <FavoriteBorderIcon sx={{ fontSize: 24 }} />
-                                <span className="text-xs font-bold hidden lg:block uppercase mt-1">Wishlist</span>
+                            <div className="hidden sm:flex flex-col items-center cursor-pointer hover:text-pink-600 transition-colors">
+                                <FavoriteBorderIcon />
+                                <span className="text-[10px] font-bold hidden md:block uppercase">Wishlist</span>
                             </div>
-                            <div onClick={() => setIsCartOpen(true)} className="flex items-center gap-1 cursor-pointer relative hover:text-pink-500 transition-colors">
-                                <LocalMallOutlinedIcon sx={{ fontSize: 24 }} />
-                                <span className="text-xs font-bold hidden lg:block uppercase mt-1">Bag</span>
-                                <span className="absolute -top-1 right-6 bg-pink-500 text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center font-bold">0</span>
+                            <div
+                                onClick={() => setIsCartOpen(true)}
+                                className="flex flex-col items-center cursor-pointer relative hover:text-pink-600 transition-colors"
+                            >
+                                <LocalMallOutlinedIcon />
+                                <span className="text-[10px] font-bold hidden md:block uppercase">Bag</span>
+                                <span className="absolute -top-1 -right-1 bg-pink-600 text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center font-bold">
+                                    0
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
 
             </div>
+
+            {/* MOBILE SIDEBAR OVERLAY */}
+            {isMenuOpen && (
+                <div className="fixed inset-0 bg-black/50 z-[110] lg:hidden" onClick={() => setIsMenuOpen(false)}>
+                    <div
+                        className="w-[280px] h-full bg-white p-6 shadow-xl"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="flex justify-between items-center mb-8">
+                            <div className="font-bold text-xl">MENU</div>
+                            <CloseIcon onClick={() => setIsMenuOpen(false)} />
+                        </div>
+                        <nav className="flex flex-col space-y-6">
+                            {['Women', 'Men', 'Kids', 'Beauty', 'All Brands'].map((cat) => (
+                                <a key={cat} href="#" className="text-lg font-medium border-b pb-2">{cat}</a>
+                            ))}
+                        </nav>
+                    </div>
+                </div>
+            )}
+
+            <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
 
             <style>{`
                 .no-scrollbar::-webkit-scrollbar { display: none; }

@@ -63,7 +63,7 @@ const Home = () => {
       <HeroBanner />
       <CategoryScroller />
       <LuxeSection />
-      <div className='py-8 px-4 md:px-8'>
+      {/* <div className='py-8 px-4 md:px-8'>
         <div className=' px-8 mb-6' >
           <h2 className='font-medium'>IN THE SPOTLIGHT</h2>
           <p className="font-medium text-2xl">Procuts on offer</p>
@@ -76,9 +76,11 @@ const Home = () => {
           <ProductCard />
 
         </div>
-      </div>
+      </div> */}
+      <ProductSlider />
 
-      <ProductSlider/>
+
+      <ProductSlider />
       <BrandSpotlight />
 
       <div className='py-8 px-4 md:px-8'>
