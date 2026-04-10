@@ -65,21 +65,26 @@ const Footer = () => {
 const App = () => {
   return (
     <div>
-      <Header />
+
       <Router>
-      <Routes>
-        {routeConfig.map((route, index) => (
-          <Route
-            path={route.path}
-            key={index}
-            element={<route.component />} // Invoke the function here
-          />
-        ))}
-      </Routes>
+        <Header />
+        <div className='mt-10'>
+
+          <Routes>
+
+            {routeConfig.map((route, index) => (
+              <Route
+                path={route.path}
+                key={index}
+                element={<route.component />} // Invoke the function here
+              />
+            ))}
+          </Routes>
+        </div>
+        <Footer />
+        <CategoryFooter />
       </Router>
 
-      <Footer />
-      <CategoryFooter />
     </div>
   );
 };

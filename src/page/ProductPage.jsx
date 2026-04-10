@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Star, Heart, Share2, ChevronRight, Minus, Plus } from 'lucide-react';
+import ProductCard from '../component/ProductCard';
 
 const ProductPage = () => {
   const [selectedSize, setSelectedSize] = useState('UK 8');
@@ -44,9 +45,8 @@ const ProductPage = () => {
               <button
                 key={idx}
                 onClick={() => setSelectedImage(idx)}
-                className={`flex-shrink-0 w-20 h-24 border-2 rounded-md overflow-hidden transition-all ${
-                  selectedImage === idx ? 'border-indigo-600' : 'border-transparent'
-                }`}
+                className={`flex-shrink-0 w-20 h-24 border-2 rounded-md overflow-hidden transition-all ${selectedImage === idx ? 'border-indigo-600' : 'border-transparent'
+                  }`}
               >
                 <img src={img} alt="thumb" className="w-full h-full object-cover" />
               </button>
@@ -55,9 +55,9 @@ const ProductPage = () => {
 
           {/* Main Image */}
           <div className="flex-1 bg-slate-50 rounded-xl overflow-hidden group relative">
-            <img 
-              src={product.images[selectedImage]} 
-              alt="Main Product" 
+            <img
+              src={product.images[selectedImage]}
+              alt="Main Product"
               className="w-full h-[500px] lg:h-[650px] object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
             />
             <button className="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur-sm rounded-full shadow-sm hover:bg-white transition-colors">
@@ -75,7 +75,7 @@ const ProductPage = () => {
             <h1 className="text-3xl font-light text-slate-800 leading-tight">
               {product.name}
             </h1>
-            
+
             <div className="flex items-center mt-3 space-x-4">
               <div className="flex items-center bg-emerald-50 px-2 py-1 rounded">
                 <span className="text-emerald-700 font-bold text-sm mr-1">{product.rating}</span>
@@ -123,11 +123,10 @@ const ProductPage = () => {
                 <button
                   key={size}
                   onClick={() => setSelectedSize(size)}
-                  className={`py-3 text-sm font-medium border rounded-md transition-all ${
-                    selectedSize === size 
-                    ? 'border-indigo-600 bg-indigo-50 text-indigo-600' 
-                    : 'border-slate-200 hover:border-black text-slate-600'
-                  }`}
+                  className={`py-3 text-sm font-medium border rounded-md transition-all ${selectedSize === size
+                      ? 'border-indigo-600 bg-indigo-50 text-indigo-600'
+                      : 'border-slate-200 hover:border-black text-slate-600'
+                    }`}
                 >
                   {size}
                 </button>
@@ -139,14 +138,14 @@ const ProductPage = () => {
           <div className="pt-6 space-y-4">
             <div className="flex items-center space-x-4">
               <div className="flex items-center border border-slate-300 rounded-md">
-                <button 
+                <button
                   onClick={() => setQuantity(q => Math.max(1, q - 1))}
                   className="p-3 hover:bg-slate-50 text-slate-600 transition-colors"
                 >
                   <Minus size={16} />
                 </button>
                 <span className="w-10 text-center font-bold">{quantity}</span>
-                <button 
+                <button
                   onClick={() => setQuantity(q => q + 1)}
                   className="p-3 hover:bg-slate-50 text-slate-600 transition-colors"
                 >
@@ -179,8 +178,49 @@ const ProductPage = () => {
               </div>
             </details>
           </div>
+          <div className="pt-6 border-t border-slate-100 space-y-4">
+            <details className="group" open>
+              <summary className="flex justify-between items-center cursor-pointer font-bold text-sm uppercase text-slate-600 list-none">
+                Know your product
+                <ChevronRight size={18} className="group-open:rotate-90 transition-transform" />
+              </summary>
+              <div className="mt-4 text-slate-500 text-sm leading-relaxed space-y-2">
+                <p>Breathable mesh upper for superior comfort.</p>
+                <p>Phylon sole for lightweight cushioning and durability.</p>
+                <p>Ideal for running, gym sessions, and daily wear.</p>
+              </div>
+            </details>
+          </div>
+          <div className="pt-6 border-t border-slate-100 space-y-4">
+            <details className="group" open>
+              <summary className="flex justify-between items-center cursor-pointer font-bold text-sm uppercase text-slate-600 list-none">
+                Return and exchange policy
+                <ChevronRight size={18} className="group-open:rotate-90 transition-transform" />
+              </summary>
+              <div className="mt-4 text-slate-500 text-sm leading-relaxed space-y-2">
+                <p>Breathable mesh upper for superior comfort.</p>
+                <p>Phylon sole for lightweight cushioning and durability.</p>
+                <p>Ideal for running, gym sessions, and daily wear.</p>
+              </div>
+            </details>
+          </div>
         </div>
+
+      
       </main>
+        <div className='py-8 lg:px-4 md:px-8'>
+          <div className='px-8 mb-6' >
+            <p className="font-medium text-2xl">More Product</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-8">
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+
+          </div>
+        </div>
     </div>
   );
 };

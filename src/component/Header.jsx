@@ -10,6 +10,8 @@ import {
     Close as CloseIcon
 } from '@mui/icons-material';
 import CartDrawer from "./CartDrawer";
+import { RouterPath } from "../router/RouterPath";
+import { Link } from "react-router-dom";
 
 const subCategories = [
     "What's New", "Sale", "Indian Wear", "Western Wear",
@@ -47,8 +49,8 @@ const Header = () => {
                                         key={category}
                                         onClick={() => setActiveCategory(category)}
                                         className={`cursor-pointer pb-1 border-b-2 transition-all font-semibold text-sm uppercase tracking-wide ${activeCategory === category
-                                                ? 'border-pink-600 text-pink-600'
-                                                : 'border-transparent hover:border-pink-600 hover:text-pink-600'
+                                            ? 'border-pink-600 text-pink-600'
+                                            : 'border-transparent hover:border-pink-600 hover:text-pink-600'
                                             }`}
                                     >
                                         {category}
@@ -89,14 +91,19 @@ const Header = () => {
 
                         {/* RIGHT: Icons */}
                         <div className="flex items-center space-x-3 md:space-x-6">
-                            <div className="flex flex-col items-center cursor-pointer hover:text-pink-600 transition-colors">
-                                <PersonOutlineIcon />
-                                <span className="text-[10px] font-bold hidden md:block uppercase">Profile</span>
-                            </div>
-                            <div className="hidden sm:flex flex-col items-center cursor-pointer hover:text-pink-600 transition-colors">
-                                <FavoriteBorderIcon />
-                                <span className="text-[10px] font-bold hidden md:block uppercase">Wishlist</span>
-                            </div>
+                            <Link to='/profile'>
+                                <div className="flex flex-col items-center cursor-pointer hover:text-pink-600 transition-colors">
+                                    <PersonOutlineIcon />
+                                    <span className="text-[10px] font-bold hidden md:block uppercase">Profile</span>
+                                </div>
+                            </Link>
+                            <Link to={RouterPath.Wishlist}>
+
+                                <div className="hidden sm:flex flex-col items-center cursor-pointer hover:text-pink-600 transition-colors">
+                                    <FavoriteBorderIcon />
+                                    <span className="text-[10px] font-bold hidden md:block uppercase">Wishlist</span>
+                                </div>
+                            </Link>
                             <div
                                 onClick={() => setIsCartOpen(true)}
                                 className="flex flex-col items-center cursor-pointer relative hover:text-pink-600 transition-colors"
