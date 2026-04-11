@@ -57,7 +57,7 @@ const Header = () => {
                             </button>
                             <div className="text-xl md:text-2xl font-bold whitespace-nowrap tracking-tight">
                                 <Link to='/'>
-                                <img src={suhana} alt="logo" className="h-16" />
+                                <img src={suhana} alt="logo" className="h-12" />
                                 </Link>
                                 {/* NY <span className="text-pink-600">FASHION</span> */}
                             </div>
@@ -105,7 +105,7 @@ const Header = () => {
                                 className="w-full pl-10 pr-10 py-2 bg-gray-100 border-none rounded-full text-sm focus:ring-1 focus:ring-pink-500 focus:bg-white transition-all"
                             />
                             <button className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400">
-                                <PhotoCameraIcon sx={{ fontSize: 18 }} />
+                                {/* <PhotoCameraIcon sx={{ fontSize: 18 }} /> */}
                             </button>
                         </div>
 
