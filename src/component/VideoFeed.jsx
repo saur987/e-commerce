@@ -60,10 +60,10 @@ const VideoFeed = () => {
                                     />
 
                                     {/* View Count Overlay */}
-                                    <div className="absolute bottom-3 left-3 flex items-center bg-black/40 backdrop-blur-md px-2 py-1 rounded-md text-white text-[10px] font-bold tracking-wider">
+                                    {/* <div className="absolute bottom-3 left-3 flex items-center bg-black/40 backdrop-blur-md px-2 py-1 rounded-md text-white text-[10px] font-bold tracking-wider">
                                         <PlayArrowIcon sx={{ fontSize: 14 }} className="mr-1" />
                                         {reel.views}
-                                    </div>
+                                    </div> */}
 
                                     {/* Glassmorphism Hover Overlay */}
                                     <div className="absolute inset-0 bg-white/10 opacity-0 group-hover/item:opacity-100 transition-opacity flex items-center justify-center">
