@@ -1,4 +1,6 @@
+import { useNavigate } from 'react-router-dom';
 import avtar from '../assets/img/avtar.jpg'
+import { RouterPath } from '../router/RouterPath';
 
 const categories = [
   { id: 1, name: 'Westernwear', img: 'https://images-static.nykaa.com/uploads/39229504-800f-4d4c-9a6f-219b21b2974f.jpg?tr=w-120,cm-pad_resize' },
@@ -20,7 +22,12 @@ const categories = [
 
 ];
 
+
 const CategoryScroller = () => {
+  const navigate = useNavigate()
+  const redirect=()=>{
+  navigate(RouterPath.ProductCategoryPage);
+}
   return (
     <div className="md:px-16 px-4 bg-pink-100 py-4 shadow-sm">
       {/* Scroll Container */}
@@ -29,6 +36,7 @@ const CategoryScroller = () => {
           <div 
             key={cat.id} 
             className=" flex flex-col items-center group cursor-pointer"
+            onClick={redirect}
           >
             {/* Image Wrapper */}
             <div className="w-[85px] h-[110px] md:w-[100px] md:h-[130px] overflow-hidden rounded-md border border-transparent  transition-all">

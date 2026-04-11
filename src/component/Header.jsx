@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     Search as SearchIcon,
     PhotoCamera as PhotoCameraIcon,
@@ -12,6 +12,7 @@ import {
 import CartDrawer from "./CartDrawer";
 import { RouterPath } from "../router/RouterPath";
 import { Link } from "react-router-dom";
+import suhana from "../assets/img/suhana.jpg"
 
 const subCategories = [
     "What's New", "Sale", "Indian Wear", "Western Wear",
@@ -23,6 +24,22 @@ const Header = () => {
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeCategory, setActiveCategory] = useState('Women');
+
+
+    // profile dropdown
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
+    const dropdownRef = useRef(null);
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsProfileOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     return (
         <header className="fixed top-0 z-[100] w-full bg-white shadow-sm font-sans">
@@ -39,7 +56,10 @@ const Header = () => {
                                 <MenuIcon />
                             </button>
                             <div className="text-xl md:text-2xl font-bold whitespace-nowrap tracking-tight">
-                                NY <span className="text-pink-600">FASHION</span>
+                                <Link to='/'>
+                                <img src={suhana} alt="logo" className="h-16" />
+                                </Link>
+                                {/* NY <span className="text-pink-600">FASHION</span> */}
                             </div>
 
                             {/* Desktop Navigation */}
@@ -91,12 +111,41 @@ const Header = () => {
 
                         {/* RIGHT: Icons */}
                         <div className="flex items-center space-x-3 md:space-x-6">
-                            <Link to='/profile'>
-                                <div className="flex flex-col items-center cursor-pointer hover:text-pink-600 transition-colors">
-                                    <PersonOutlineIcon />
-                                    <span className="text-[10px] font-bold hidden md:block uppercase">Profile</span>
+                            <div
+                                onClick={() => setIsProfileOpen(!isProfileOpen)}
+                                className="flex flex-col items-center cursor-pointer hover:text-pink-600 transition-colors"
+                            >
+                                <PersonOutlineIcon />
+                                <span className="text-[10px] font-bold hidden md:block uppercase">Profile</span>
+                            </div>
+                            {isProfileOpen && (
+                                <div className="absolute right-0 mt-2 w-48 top-12 bg-white border border-gray-100 rounded-md shadow-lg py-2 z-50 animate-in fade-in zoom-in duration-75">
+                                    <Link
+                                        to="/profile"
+                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600 transition-colors"
+                                        onClick={() => setIsProfileOpen(false)}
+                                    >
+                                        My Profile
+                                    </Link>
+                                    <Link
+                                        to="/order/detail"
+                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600 transition-colors"
+                                        onClick={() => setIsProfileOpen(false)}
+                                    >
+                                        Orders
+                                    </Link>
+                                    <hr className="my-1 border-gray-100" />
+                                    <button
+                                        onClick={() => {
+                                            // Add your logout logic here
+                                            setIsProfileOpen(false);
+                                        }}
+                                        className="w-full text-left block px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                                    >
+                                        Logout
+                                    </button>
                                 </div>
-                            </Link>
+                            )}
                             <Link to={RouterPath.Wishlist}>
 
                                 <div className="hidden sm:flex flex-col items-center cursor-pointer hover:text-pink-600 transition-colors">

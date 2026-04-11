@@ -54,7 +54,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400 text-sm">
-          © 2023 Nykaa Fashion. All Rights Reserved.
+          © 2023 Suhana . All Rights Reserved.
         </div>
       </div>
     </footer>
@@ -68,7 +68,7 @@ const App = () => {
 
       <Router>
         <Header />
-        <div className='mt-10'>
+        <div className='md:mt-16 mt-16 '>
 
           <Routes>
 

@@ -6,6 +6,7 @@ import ProductCard from '../component/ProductCard'
 import BrandSpotlight from '../component/BrandSpotlight'
 import StoreSection from '../component/StoreSection'
 import ProductSlider from '../component/ProductSlider'
+import VideoFeed from '../component/VideoFeed'
 
 const Footer = () => {
   return (
@@ -78,6 +79,7 @@ const Home = () => {
         </div>
       </div> */}
       <ProductSlider />
+      <VideoFeed/>
       <ProductSlider />
       <BrandSpotlight />
 
