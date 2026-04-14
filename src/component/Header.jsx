@@ -12,7 +12,7 @@ import {
 import CartDrawer from "./CartDrawer";
 import { RouterPath } from "../router/RouterPath";
 import { Link } from "react-router-dom";
-import suhana from "../assets/img/suhana.jpg"
+import suhana from "../assets/img/suhana.png"
 
 const subCategories = [
     "What's New", "Sale", "Indian Wear", "Western Wear",
@@ -57,7 +57,7 @@ const Header = () => {
                             </button>
                             <div className="text-xl md:text-2xl font-bold whitespace-nowrap tracking-tight">
                                 <Link to='/'>
-                                <img src={suhana} alt="logo" className="h-12" />
+                                <img src={suhana} alt="logo" className="md:h-9 h-6" />
                                 </Link>
                                 {/* NY <span className="text-pink-600">FASHION</span> */}
                             </div>
