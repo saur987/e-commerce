@@ -57,7 +57,7 @@ const Header = () => {
                             </button>
                             <div className="text-xl md:text-2xl font-bold whitespace-nowrap tracking-tight">
                                 <Link to='/'>
-                                <img src={suhana} alt="logo" className="md:h-9 h-6" />
+                                <img src={suhana} alt="logo" className="md:h-14 h-8" />
                                 </Link>
                                 {/* NY <span className="text-pink-600">FASHION</span> */}
                             </div>
