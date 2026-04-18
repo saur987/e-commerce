@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'; // Assuming Material UI Icons
+import UserSidebar from '../component/UserSidebar';
+import { Package, Truck, MapPin, ChevronRight, Receipt } from 'lucide-react';
 
 const OrderDetails = () => {
     // This would typically come from your API or state
@@ -33,87 +35,166 @@ const OrderDetails = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 py-8 px-4 md:px-12">
-            <div className="max-w-4xl mx-auto">
-                {/* Header Navigation */}
-                <Link to="/orders" className="flex items-center text-gray-600 hover:text-pink-600 mb-6 transition-colors">
-                    <ArrowBackIcon fontSize="small" className="mr-2" />
-                    <span className="font-medium">Back to Orders</span>
-                </Link>
+        <div className="min-h-screen bg-gray-50/50 py-8 px-4 sm:px-6 lg:px-8 mt-14">
+            <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
+                {/* --- RESPONSIVE SIDEBAR --- */}
+                <UserSidebar />
+                <main className="flex-1 space-y-8">
+                    <div className="">
+                        {/* Header Navigation */}
+                        {/* <Link to="/orders" className="flex items-center text-gray-600 hover:text-pink-600 mb-6 transition-colors">
+                            <ArrowBackIcon fontSize="small" className="mr-2" />
+                            <span className="font-medium">Back to Orders</span>
+                        </Link> */}
 
-                <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                    {/* Order Status Header */}
-                    <div className="bg-gray-50 p-6 border-b border-gray-100 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-                        <div>
-                            <h1 className="text-xl font-bold text-gray-800">Order {orderData.orderId}</h1>
-                            <p className="text-sm text-gray-500">Placed on {orderData.date}</p>
-                        </div>
-                        <span className="px-4 py-1 bg-pink-100 text-pink-700 rounded-full text-sm font-semibold w-fit">
-                            {orderData.status}
-                        </span>
-                    </div>
+                        <div className="max-w-6xl mx-auto space-y-6 p-4">
+                            {/* 1. TOP HEADER BAR */}
+                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                                <div className="flex items-center gap-4">
+                                    <div className="h-14 w-14 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600">
+                                        <Package size={28} />
+                                    </div>
+                                    <div>
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-xs font-black text-slate-400 uppercase tracking-widest">Order ID</span>
+                                            <span className="text-xs font-bold bg-slate-100 px-2 py-0.5 rounded text-slate-600">{orderData.orderId}</span>
+                                        </div>
+                                        <h1 className="text-xl font-black text-slate-900 mt-0.5">Summary for {orderData.shippingAddress.name.split('')[0]}</h1>
+                                    </div>
+                                </div>
 
-                    <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {/* Product List */}
-                        <div className="md:col-span-2 space-y-6">
-                            <h3 className="font-bold text-gray-700 uppercase text-xs tracking-wider">Items</h3>
-                            {orderData.items.map((item) => (
-                                <div key={item.id} className="flex gap-4 p-4 border border-gray-50 rounded-lg">
-                                    <img src={item.image} alt={item.name} className="w-20 h-24 object-cover rounded-md" />
-                                    <div className="flex-1">
-                                        <h4 className="font-bold text-gray-800">{item.name}</h4>
-                                        <p className="text-sm text-gray-500">{item.variant}</p>
-                                        <div className="mt-2 flex justify-between items-center">
-                                            <span className="text-sm font-medium">Qty: {item.quantity}</span>
-                                            <span className="font-bold text-pink-600">₹{item.price}</span>
+                                <div className="flex items-center gap-3">
+                                    <div className="text-right hidden md:block">
+                                        <p className="text-[10px] font-bold text-slate-400 uppercase">Status</p>
+                                        <p className="text-sm font-bold text-slate-800">{orderData.status}</p>
+                                    </div>
+                                    {/* <div className="h-10 w-10 rounded-full border-4 border-pink-100 border-t-pink-600 animate-spin hidden md:block"></div> */}
+                                    <span className="px-5 py-2 bg-pink-600 text-white rounded-xl text-sm font-bold shadow-lg shadow-pink-200">
+                                        {orderData.status}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                                {/* 2. LEFT COLUMN: ITEMS & PROGRESS */}
+                                <div className="lg:col-span-2 space-y-6">
+
+                                    {/* Item Cards */}
+                                    <div className="space-y-4">
+                                        <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest flex items-center gap-2">
+                                            <div className="h-1 w-4 bg-pink-600 rounded-full"></div>
+                                            Your Items ({orderData.items.length})
+                                        </h3>
+
+                                        {orderData.items.map((item) => (
+                                            <div key={item.id} className="group bg-white p-4 rounded-3xl border border-slate-100 hover:border-pink-200 transition-all flex gap-5 items-center">
+                                                <div className="relative">
+                                                    <img src={item.image} alt={item.name} className="w-24 h-28 object-cover rounded-2xl shadow-sm group-hover:scale-105 transition-transform" />
+                                                    <span className="absolute -top-2 -right-2 bg-slate-900 text-white text-[10px] font-bold h-6 w-6 flex items-center justify-center rounded-full border-2 border-white">
+                                                        {item.quantity}
+                                                    </span>
+                                                </div>
+
+                                                <div className="flex-1">
+                                                    <div className="flex justify-between items-start">
+                                                        <div>
+                                                            <h4 className="font-bold text-slate-800 text-lg group-hover:text-pink-600 transition-colors">{item.name}</h4>
+                                                            <p className="text-xs font-semibold text-slate-400 mt-1 uppercase tracking-tighter">{item.variant}</p>
+                                                        </div>
+                                                        <p className="text-lg font-black text-slate-900">₹{item.price}</p>
+                                                    </div>
+
+                                                    <div className="mt-4 flex items-center gap-4">
+                                                        <button className="text-[10px] font-bold uppercase text-slate-400 hover:text-pink-600 flex items-center gap-1 transition-colors">
+                                                            View Product <ChevronRight size={12} />
+                                                        </button>
+                                                        <button className="text-[10px] font-bold uppercase text-slate-400 hover:text-pink-600 flex items-center gap-1 transition-colors">
+                                                            Write Review
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* 3. RIGHT COLUMN: LOGISTICS & BILLING */}
+                                <div className="space-y-6">
+
+                                    {/* Shipping Address Card */}
+                                    <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden">
+                                        <div className="absolute top-0 right-0 p-8 text-slate-50 pointer-events-none">
+                                            <Truck size={80} />
+                                        </div>
+
+                                        <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                            <MapPin size={16} className="text-pink-600" />
+                                            Delivery
+                                        </h3>
+
+                                        <div className="relative z-10">
+                                            <p className="font-bold text-slate-800 text-base">{orderData.shippingAddress.name}</p>
+                                            <div className="text-sm text-slate-500 font-medium mt-2 leading-relaxed">
+                                                <p>{orderData.shippingAddress.street}</p>
+                                                <p>{orderData.shippingAddress.city}, {orderData.shippingAddress.pincode}</p>
+                                            </div>
+                                            <button className="mt-4 text-xs font-bold text-pink-600 hover:underline">
+                                                Change Address
+                                            </button>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
 
-                        {/* Order Summary & Shipping */}
-                        <div className="space-y-8">
-                            {/* Shipping Address */}
-                            <div>
-                                <h3 className="font-bold text-gray-700 uppercase text-xs tracking-wider mb-3">Shipping Address</h3>
-                                <div className="text-sm text-gray-600 leading-relaxed">
-                                    <p className="font-bold text-gray-800">{orderData.shippingAddress.name}</p>
-                                    <p>{orderData.shippingAddress.street}</p>
-                                    <p>{orderData.shippingAddress.city} - {orderData.shippingAddress.pincode}</p>
+                                    {/* Payment Summary Card */}
+                                    <div className="bg-slate-900 p-6 rounded-3xl shadow-xl shadow-slate-200 text-white relative overflow-hidden">
+                                        {/* Abstract background circles */}
+                                        <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-pink-600/20 rounded-full blur-2xl"></div>
+
+                                        <h3 className="text-sm font-black uppercase tracking-widest mb-6 flex items-center gap-2">
+                                            <Receipt size={16} className="text-pink-500" />
+                                            Payment Summary
+                                        </h3>
+
+                                        <div className="space-y-3 relative z-10">
+                                            <div className="flex justify-between text-sm font-medium text-slate-400">
+                                                <span>Subtotal</span>
+                                                <span className="text-slate-200">₹{orderData.summary.subtotal}</span>
+                                            </div>
+                                            <div className="flex justify-between text-sm font-medium text-slate-400">
+                                                <span>Shipping Fee</span>
+                                                <span className="text-emerald-400">Free</span>
+                                            </div>
+                                            <div className="flex justify-between text-sm font-medium text-slate-400">
+                                                <span>Est. Tax</span>
+                                                <span className="text-slate-200">₹{orderData.summary.tax}</span>
+                                            </div>
+
+                                            <div className="pt-4 mt-2 border-t border-slate-800">
+                                                <div className="flex justify-between items-end">
+                                                    <div>
+                                                        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Total Amount</p>
+                                                        <p className="text-2xl font-black text-white">₹{orderData.summary.total}</p>
+                                                    </div>
+                                                    <div className="bg-emerald-500/20 text-emerald-400 text-[10px] px-2 py-1 rounded-md font-bold mb-1">
+                                                        PAID
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button className="w-full mt-6 py-4 bg-pink-600 hover:bg-pink-500 text-white rounded-2xl font-bold transition-all transform active:scale-95 shadow-lg shadow-pink-900/20 flex items-center justify-center gap-2">
+                                            <Truck size={18} />
+                                            Live Tracking
+                                        </button>
+                                    </div>
+
+                                    <p className="text-center text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                                        Need help with this order? <span className="text-pink-600 cursor-pointer">Contact Support</span>
+                                    </p>
                                 </div>
                             </div>
-
-                            {/* Total Calculation */}
-                            <div className="bg-gray-50 p-4 rounded-lg">
-                                <h3 className="font-bold text-gray-700 uppercase text-xs tracking-wider mb-3">Total Summary</h3>
-                                <div className="space-y-2 text-sm">
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-500">Subtotal</span>
-                                        <span>₹{orderData.summary.subtotal}</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-500">Shipping</span>
-                                        <span className="text-green-600 font-medium">₹{orderData.summary.shipping}</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-500">Tax</span>
-                                        <span>₹{orderData.summary.tax}</span>
-                                    </div>
-                                    <hr className="my-2 border-gray-200" />
-                                    <div className="flex justify-between font-bold text-lg text-gray-900">
-                                        <span>Total</span>
-                                        <span className="text-pink-600">₹{orderData.summary.total}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <button className="w-full py-3 bg-pink-600 text-white rounded-lg font-bold hover:bg-pink-700 transition-colors shadow-md shadow-pink-100">
-                                Track Order
-                            </button>
                         </div>
                     </div>
-                </div>
+                </main>
             </div>
         </div>
     );

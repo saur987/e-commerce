@@ -1,109 +1,80 @@
-import { Edit2, Plus, MapPin, Mail, Phone, User } from 'lucide-react';
+// import React, { useState } from 'react';
+import { Edit2, Plus, MapPin, Mail, Phone, User, Heart, ShoppingBag, LogOut } from 'lucide-react';
+import UserSidebar from '../component/UserSidebar';
 
 const ProfilePage = () => {
+
   const user = {
-    name: "saurabh saurabh",
-    email: "saurabh9318vns@gmail.com",
+    name: "Saurabh Saurabh",
+    email: "test123@gmail.com",
     address: {
       isDefault: true,
-      street: "addrss",
-      landmark: "adddress",
+      street: "DLW Road",
+      landmark: "Near BHU",
       city: "Varanasi",
       zip: "221002",
       state: "Uttar Pradesh",
       country: "India",
-      phone: "+919685741425"
+      phone: "+91 9685741425"
     }
   };
 
-  return (
-    <div className="min-h-screen mt-10 bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto space-y-8">
-        
-        {/* Header Section */}
-        <div className="flex items-center justify-between border-b border-gray-200 pb-5">
-          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Profile</h1>
-        </div>
 
-        {/* Profile Details Card */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all hover:shadow-md">
-          <div className="p-6 sm:p-8">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-4">
-                <div className="h-16 w-16 bg-pink-100 rounded-full flex items-center justify-center text-pink-600">
-                  <User size={32} />
+
+  return (
+    <div className="min-h-screen bg-gray-50/50 py-8 px-4 sm:px-6 lg:px-8 mt-14">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
+        
+        {/* --- RESPONSIVE SIDEBAR --- */}
+        <UserSidebar/>
+       
+        {/* --- MAIN CONTENT AREA --- */}
+        <main className="flex-1 space-y-8">
+          
+          {/* Header Section */}
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-black text-gray-900 uppercase tracking-tight">Account Profile</h1>
+          </div>
+
+          {/* Profile Details Card */}
+          <section className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div className="p-6 sm:p-8">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-5">
+                  <div className="h-20 w-20 bg-primary/10 rounded-2xl flex items-center justify-center text-primary border border-primary/20 rotate-3">
+                    <User size={36} className="-rotate-3" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-900 leading-tight">{user.name}</h2>
+                    <p className="text-gray-400 font-medium flex items-center gap-1.5 mt-1">
+                      <Mail size={14} /> {user.email}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="text-xl font-bold text-gray-900">{user.name}</h2>
-                  <p className="text-gray-500 flex items-center gap-1">
-                    <Mail size={14} /> {user.email}
+                <button className="p-2.5 hover:bg-primary hover:text-white rounded-xl transition-all text-gray-400 border border-gray-100 shadow-sm">
+                  <Edit2 size={18} />
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 py-6 border-t border-gray-50">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Full Name</span>
+                  <p className="text-gray-800 font-bold">{user.name}</p>
+                </div>
+                <div className="space-y-1">
+                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Verification Status</span>
+                  <p className="text-emerald-500 font-bold flex items-center gap-1 text-sm">
+                    Verified Customer
                   </p>
                 </div>
               </div>
-              <button className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-600 border border-gray-200">
-                <Edit2 size={18} />
-              </button>
             </div>
+          </section>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-gray-50">
-              <div>
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Full Name</span>
-                <p className="text-gray-800 font-medium">{user.name}</p>
-              </div>
-              <div>
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Email Address</span>
-                <p className="text-gray-800 font-medium">{user.email}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+          {/* Addresses Section */}
+      
 
-        {/* Addresses Section */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-              <MapPin size={20} className="text-pink-600" />
-              Addresses
-            </h2>
-            <button className="flex items-center gap-2 px-4 py-2 bg-[#001325] text-white rounded-lg hover:bg-black transition-all font-bold text-sm">
-              <Plus size={16} />
-              Add New Address
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Address Card */}
-            <div className="bg-white p-6 rounded-xl border-2 border-pink-100 shadow-sm relative group cursor-pointer hover:border-pink-300 transition-all">
-              {user.address.isDefault && (
-                <div className="absolute top-4 right-4 bg-pink-50 text-pink-600 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-tighter">
-                  Default
-                </div>
-              )}
-              
-              <div className="space-y-2">
-                <p className="font-bold text-gray-900">{user.name}</p>
-                <div className="text-sm text-gray-600 space-y-0.5 leading-relaxed">
-                  <p>{user.address.street}</p>
-                  <p>{user.address.landmark}</p>
-                  <p>{user.address.city}, {user.address.state} - {user.address.zip}</p>
-                  <p>{user.address.country}</p>
-                </div>
-                <div className="pt-3 flex items-center gap-2 text-sm font-semibold text-gray-800">
-                  <Phone size={14} className="text-gray-400" />
-                  {user.address.phone}
-                </div>
-              </div>
-
-              {/* Edit Icon for Address */}
-              <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="p-2 bg-gray-50 rounded-full text-gray-600 hover:text-pink-600">
-                  <Edit2 size={16} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        </main>
       </div>
     </div>
   );

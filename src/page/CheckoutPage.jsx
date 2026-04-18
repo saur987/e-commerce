@@ -1,9 +1,26 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { Edit2, Plus, MapPin, Mail, Phone, User, Heart, ShoppingBag, LogOut } from 'lucide-react';
+
 
 const CheckoutPage = () => {
     const [paymentMethod, setPaymentMethod] = useState('cod');
+     const user = {
+    name: "Saurabh Saurabh",
+    email: "test123@gmail.com",
+    address: {
+      isDefault: true,
+      street: "DLW Road",
+      landmark: "Near BHU",
+      city: "Varanasi",
+      zip: "221002",
+      state: "Uttar Pradesh",
+      country: "India",
+      phone: "+91 9685741425"
+    }
+  };
+
 
     return (
         <div className="min-h-screen bg-gray-50 py-10 px-4 md:px-12">
@@ -11,37 +28,54 @@ const CheckoutPage = () => {
                 
                 {/* Left Side: Shipping & Payment (8 Columns) */}
                 <div className="lg:col-span-8 space-y-6">
-                    <Link to="/cart" className="flex items-center text-sm font-medium text-gray-500 hover:text-pink-600 transition-colors mb-4">
+                    <Link to="/" className="flex items-center text-sm font-medium text-gray-500 hover:text-pink-600 transition-colors mb-4">
                         <ArrowBackIosIcon sx={{ fontSize: 12 }} className="mr-1" />
-                        Back to Cart
+                        Back
                     </Link>
 
-                    {/* Shipping Address Section */}
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h2 className="text-xl font-bold text-gray-800 mb-6">Shipping Information</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                                <label className="text-xs font-bold uppercase text-gray-500">Full Name</label>
-                                <input type="text" placeholder="John Doe" className="w-full p-3 border border-gray-200 rounded-lg focus:ring-1 focus:ring-pink-500 outline-none transition-all" />
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-bold uppercase text-gray-500">Phone Number</label>
-                                <input type="text" placeholder="+91 98765 43210" className="w-full p-3 border border-gray-200 rounded-lg focus:ring-1 focus:ring-pink-500 outline-none transition-all" />
-                            </div>
-                            <div className="md:col-span-2 space-y-2">
-                                <label className="text-xs font-bold uppercase text-gray-500">Street Address</label>
-                                <input type="text" placeholder="House No, Building, Street Name" className="w-full p-3 border border-gray-200 rounded-lg focus:ring-1 focus:ring-pink-500 outline-none transition-all" />
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-bold uppercase text-gray-500">City</label>
-                                <input type="text" placeholder="Varanasi" className="w-full p-3 border border-gray-200 rounded-lg focus:ring-1 focus:ring-pink-500 outline-none transition-all" />
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-bold uppercase text-gray-500">Pincode</label>
-                                <input type="text" placeholder="221005" className="w-full p-3 border border-gray-200 rounded-lg focus:ring-1 focus:ring-pink-500 outline-none transition-all" />
-                            </div>
-                        </div>
-                    </div>
+    <section className="space-y-5">
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                <MapPin size={20} className="text-primary" />
+                Shipping Addresses
+              </h2>
+              <button className="flex items-center gap-2 px-5 py-2.5 bg-gray-900 text-white rounded-xl hover:bg-primary transition-all font-bold text-xs uppercase tracking-wider">
+                <Plus size={16} />
+                Add New
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Address Card */}
+              <div className="bg-white p-6 rounded-2xl border-2 border-primary/10 shadow-sm relative group hover:border-primary/40 transition-all">
+                {user.address.isDefault && (
+                  <div className="absolute top-4 right-4 bg-primary text-white px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest">
+                    Default
+                  </div>
+                )}
+                
+                <div className="space-y-3">
+                  <p className="font-bold text-gray-900 text-lg">{user.name}</p>
+                  <div className="text-sm text-gray-500 space-y-1 font-medium leading-relaxed">
+                    <p>{user.address.street}, {user.address.landmark}</p>
+                    <p>{user.address.city}, {user.address.state}</p>
+                    <p className="text-gray-900 font-bold">{user.address.zip}</p>
+                  </div>
+                  <div className="pt-3 flex items-center gap-2 text-sm font-bold text-gray-900 border-t border-gray-50">
+                    <Phone size={14} className="text-primary" />
+                    {user.address.phone}
+                  </div>
+                </div>
+
+                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button className="p-2 bg-gray-50 rounded-lg text-gray-400 hover:text-primary hover:bg-primary/5 border border-gray-100">
+                    <Edit2 size={16} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+                   
 
                     {/* Payment Method Section */}
                     <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
