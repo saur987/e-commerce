@@ -1,4 +1,6 @@
+import Blog from "../page/Blog";
 import CheckoutPage from "../page/CheckoutPage";
+import Contactus from "../page/Contactus";
 import Home from "../page/Home";
 import OrderDetails from "../page/OrderDetails";
 import ProductCategoryPage from "../page/ProductCategoryPage";
@@ -13,7 +15,9 @@ export const RouterPath = {
   Wishlist: "/wishlist",
   ProductCategoryPage: "/product/category",
   OrderDetails: "/order/detail",
-  CheckoutPage: "/checkout"
+  CheckoutPage: "/checkout",
+  Contactus: "/contactus",
+  Blog:"/blog",
 };
 
 export const routeConfig = [
@@ -41,8 +45,16 @@ export const routeConfig = [
     component: OrderDetails,
     path: RouterPath.OrderDetails,
   },
-   {
+  {
     component: CheckoutPage,
     path: RouterPath.CheckoutPage,
+  },
+  {
+    component: Contactus,
+    path: RouterPath.Contactus,
+  },
+   {
+    component: Blog,
+    path: RouterPath.Blog,
   },
 ];

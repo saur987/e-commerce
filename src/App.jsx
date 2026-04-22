@@ -2,6 +2,8 @@ import './App.css'
 import CategoryFooter from './component/CategoryFooter';
 import Header from './component/Header';
 import { routeConfig } from './router/RouterPath';
+import { Link } from "react-router-dom";
+
 
 import {
   BrowserRouter as Router,
@@ -23,7 +25,13 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-3">Customer Care</h4>
             <ul className="text-gray-400 text-sm space-y-2">
+              
+              <Link to="/contactus">
               <li>Contact Us</li>
+              </Link>
+               <Link to="/blog">
+              <li>Blog</li>
+              </Link>
               <li>FAQs</li>
               <li>Shipping</li>
               <li>Returns</li>

@@ -28,13 +28,13 @@ const ProductPage = () => {
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans">
       {/* Breadcrumbs */}
-      <nav className="max-w-7xl mx-auto px-4 py-4 flex items-center space-x-2 text-sm text-slate-500">
+      {/* <nav className="max-w-7xl mx-auto px-4 py-4 flex items-center space-x-2 text-sm text-slate-500">
         <a href="/" className="hover:text-black">Home</a>
         <ChevronRight size={14} />
         <a href="/men" className="hover:text-black">Men</a>
         <ChevronRight size={14} />
         <span className="text-slate-900 font-medium">{product.brand}</span>
-      </nav>
+      </nav> */}
 
       <main className="max-w-7xl mx-auto px-4 py-6 lg:flex lg:space-x-12">
         {/* Left: Image Gallery */}
@@ -66,13 +66,13 @@ const ProductPage = () => {
           </div>
 
           {/* --- MAIN IMAGE SHOWCASE --- */}
-          <div className="flex-1 relative aspect-[3/4] lg:aspect-auto lg:h-[750px] bg-[#F9FAFB] rounded-[2.5rem] overflow-hidden group border border-slate-100">
+          <div className="flex-1 relative lg:aspect-auto lg:h-[650px] bg-[#F9FAFB] rounded-[2.5rem] overflow-hidden group border border-slate-100">
 
             {/* Floating Action Badges */}
             <div className="absolute top-6 left-6 z-10 flex flex-col gap-2">
-              <span className="px-3 py-1 bg-white/90 backdrop-blur-md text-slate-900 text-[10px] font-black uppercase tracking-widest rounded-full shadow-sm border border-slate-100">
+              {/* <span className="px-3 py-1 bg-white/90 backdrop-blur-md text-slate-900 text-[10px] font-black uppercase tracking-widest rounded-full shadow-sm border border-slate-100">
                 New Arrival
-              </span>
+              </span> */}
               {/* <span className="px-3 py-1 bg-primary text-white text-[10px] font-black uppercase tracking-widest rounded-full shadow-md">
                 -20% OFF
               </span> */}
@@ -89,7 +89,7 @@ const ProductPage = () => {
             </div>
 
             {/* Product Image */}
-            <div className="w-full h-full flex items-center justify-center p-8 lg:p-12">
+            <div className=" flex items-center justify-center ">
               <img
                 src={product.images[selectedImage]}
                 alt="Featured Product"
@@ -144,7 +144,7 @@ const ProductPage = () => {
           </div>
 
           {/* Pricing Section - High Contrast */}
-          <div className="bg-slate-50 p-6 rounded-[2rem] border border-slate-100/50">
+          <div className="bg-slate-50 p-3 rounded-[2rem] border border-slate-100/50">
             <div className="flex items-end gap-3">
               <span className="text-4xl font-black text-slate-900">₹{product.price}</span>
               <span className="text-lg text-slate-400 line-through mb-1 font-medium">₹{product.mrp}</span>
@@ -222,9 +222,9 @@ const ProductPage = () => {
                 Add to Bag
               </button>
 
-              <button className="w-16 flex items-center justify-center border-2 border-slate-100 rounded-2xl hover:border-red-100 group transition-all">
+              {/* <button className="w-16 flex items-center justify-center border-2 border-slate-100 rounded-2xl hover:border-red-100 group transition-all">
                 <Heart size={20} className="group-hover:text-red-500 group-hover:fill-red-500 transition-all duration-300" />
-              </button>
+              </button> */}
             </div>
           </div>
 
