@@ -5,11 +5,15 @@ import { routeConfig } from './router/RouterPath';
 import { Link } from "react-router-dom";
 
 
+
 import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Outlet
 } from "react-router-dom";
+import Registration from './page/Registration';
+import Login from './page/Login';
 
 
 // Footer Component
@@ -25,12 +29,12 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-3">Customer Care</h4>
             <ul className="text-gray-400 text-sm space-y-2">
-              
+
               <Link to="/contactus">
-              <li>Contact Us</li>
+                <li>Contact Us</li>
               </Link>
-               <Link to="/blog">
-              <li>Blog</li>
+              <Link to="/blog">
+                <li>Blog</li>
               </Link>
               <li>FAQs</li>
               <li>Shipping</li>
@@ -69,31 +73,39 @@ const Footer = () => {
   );
 };
 
+
+const MainLayout = () => (
+  <>
+    <Header />
+    <div className='md:mt-16 mt-16 min-h-screen'>
+      {/* Outlet renders the child routes defined in the Router */}
+      <Outlet />
+    </div>
+    <Footer />
+    <CategoryFooter />
+  </>
+);
 // Main App Component
 const App = () => {
   return (
-    <div>
+    <Router>
+      <Routes>
+        {/* --- PUBLIC ROUTES (No Header/Footer) --- */}
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/login" element={<Login/>} />
 
-      <Router>
-        <Header />
-        <div className='md:mt-16 mt-16 '>
-
-          <Routes>
-
-            {routeConfig.map((route, index) => (
-              <Route
-                path={route.path}
-                key={index}
-                element={<route.component />} // Invoke the function here
-              />
-            ))}
-          </Routes>
-        </div>
-        <Footer />
-        <CategoryFooter />
-      </Router>
-
-    </div>
+        {/* --- MAIN ROUTES (With Header/Footer) --- */}
+        <Route element={<MainLayout />}>
+          {routeConfig.map((route, index) => (
+            <Route
+              path={route.path}
+              key={index}
+              element={<route.component />}
+            />
+          ))}
+        </Route>
+      </Routes>
+    </Router>
   );
 };
 

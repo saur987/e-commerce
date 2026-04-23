@@ -1,3 +1,4 @@
+import AddBanner from "../../../admin/src/pages/AddBanner";
 import Blog from "../page/Blog";
 import CheckoutPage from "../page/CheckoutPage";
 import Contactus from "../page/Contactus";
@@ -6,10 +7,12 @@ import OrderDetails from "../page/OrderDetails";
 import ProductCategoryPage from "../page/ProductCategoryPage";
 import ProductPage from "../page/ProductPage";
 import ProfilePage from "../page/ProfilePage";
+import Registration from "../page/Registration";
 import Wishlist from "../page/Wishlist";
 
 export const RouterPath = {
   Home: "/",
+
   ProductPage: "/product",
   ProfilePage: "/profile",
   Wishlist: "/wishlist",
@@ -18,6 +21,11 @@ export const RouterPath = {
   CheckoutPage: "/checkout",
   Contactus: "/contactus",
   Blog:"/blog",
+
+  AddBanner:"/banner/add",
+
+  
+
 };
 
 export const routeConfig = [
@@ -57,4 +65,5 @@ export const routeConfig = [
     component: Blog,
     path: RouterPath.Blog,
   },
+  
 ];
